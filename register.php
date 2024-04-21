@@ -90,6 +90,7 @@
 
                                     <select name="level" class="form-control col-sm-6" required>
                                         <option value="peminjam">Peminjam</option>
+                                        <option value="petugas">Petugas</option>
                                         <option value="admin">Admin</option>
                                     </select>
                                 </div>

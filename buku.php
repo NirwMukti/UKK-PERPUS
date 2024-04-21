@@ -1,6 +1,13 @@
 <h1 class="mt-4">Kategori Buku</h1>
 <div class="row">
-    <a href="?page=buku_tambah" class="btn btn-primary mb-4">+Tambah Data</a>
+    <?php
+    if(isset($_SESSION['user'])) {
+        $user_role = $_SESSION['user']['level'];
+        if($user_role != 'petugas') {
+            echo '<a href="?page=buku_tambah" class="btn btn-primary mb-4">+Tambah Data</a>';
+        }
+    }
+    ?>
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <tr>
             <th>No</th>

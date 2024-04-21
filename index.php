@@ -94,11 +94,17 @@
             }
             ?>
 
+            <?php 
+                if($_SESSION['user']['level'] == 'peminjam'){
+            ?>
             <li class="nav-item">
                 <a class="nav-link" href="?page=ulasan">
                     <i class="fas fa-comment"></i>
                     <span>Ulasan</span></a>
             </li>
+            <?php
+                }
+            ?>
 
             <?php 
                 if($_SESSION['user']['level'] != 'peminjam'){
@@ -128,7 +134,7 @@
 
             <div class="nav-item" style="padding: 0.5rem 1rem; margin-top: 10rem; color:#FFFFCC;">
                 <div class="small">Logged in as:</div>
-                <?php echo $_SESSION['user']['nama']; ?>
+                <?php echo $_SESSION['user']['level']; ?>
             </div>  
 
         </ul>
@@ -310,7 +316,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['user']['nama']; ?></span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
