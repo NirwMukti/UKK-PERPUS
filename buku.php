@@ -12,6 +12,7 @@
         <tr>
             <th>No</th>
             <th>Nama Kategori</th>
+            <th>Gambar</th>
             <th>Judul</th>
             <th>Penulis</th>
             <th>Penerbit</th>
@@ -25,13 +26,14 @@
             while($data = mysqli_fetch_array($query)){
                 ?>
         <tr>
-            <td> <?php echo $i++; ?> </td>
-            <td> <?php echo $data['kategori']; ?> </td>
-            <td> <?php echo $data['judul']; ?> </td>
-            <td> <?php echo $data['penulis']; ?> </td>
-            <td> <?php echo $data['penerbit']; ?> </td>
-            <td> <?php echo $data['tahun_terbit']; ?> </td>
-            <td> <?php echo $data['deskripsi']; ?> </td>
+            <td><?php echo $i++ ?></td>
+            <td><?php echo $data['kategori']; ?></td>
+            <td><img src="assets/img/<?php echo $data['gambar'];?>" width="100"></td>
+            <td><?php echo $data['judul']; ?></td>
+            <td><?php echo $data['penulis']; ?></td>
+            <td><?php echo $data['penerbit']; ?></td>
+            <td><?php echo $data['tahun_terbit']; ?></td>
+            <td><?php echo $data['deskripsi']; ?></td>
             <td>
                 <a href="?page=buku_ubah&&id=<?php echo $data['id_buku']; ?>" class="btn btn-info"> Ubah</a>
                 <a onclick="return confirm('Apakah anda yakin menghapus data ini?');"

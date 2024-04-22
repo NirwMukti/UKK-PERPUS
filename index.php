@@ -118,6 +118,18 @@
                 }
                 ?>
 
+            <?php 
+                if($_SESSION['user']['level'] == 'admin'){
+            ?>
+            <li class="nav-item">
+                <a class="nav-link" href="?page=log">
+                    <i class="fas fa-clock"></i>
+                    <span>Log Activity</span></a>
+            </li>
+            <?php
+                }
+                ?>
+
             <li class="nav-item">
                 <a class="nav-link" href="logout.php">
                     <i class="fas fa-power-off"></i>

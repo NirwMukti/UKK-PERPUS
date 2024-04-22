@@ -4,17 +4,23 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-12">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
 
                     <?php
                         if(isset($_POST['submit'])) {
                             $id_kategori = $_POST['id_kategori'];
                             $judul = $_POST['judul'];
+                            $gambar = $_FILES['gambar']['name'];
+                            $tmp = $_FILES['gambar']['tmp_name'];
+                            $lokasi = 'assets/img/';
+                            $nama_gambar = rand(0,999).'-'.$gambar;
                             $penulis = $_POST['penulis'];
                             $penerbit = $_POST['penerbit'];
                             $tahun_terbit = $_POST['tahun_terbit'];
                             $deskripsi = $_POST['deskripsi'];
-                            $query = mysqli_query($koneksi, "INSERT INTO buku(id_kategori, judul, penulis, penerbit, tahun_terbit, deskripsi) VALUES ('$id_kategori ', '$judul', '$penulis', '$penerbit', '$tahun_terbit', '$deskripsi')");
+
+                            move_uploaded_file($tmp, $lokasi.$nama_gambar);
+                            $query = mysqli_query($koneksi, "INSERT INTO buku(id_kategori, gambar, judul,penulis, penerbit, tahun_terbit, deskripsi) VALUES ('$id_kategori ', '$nama_gambar' ,'$judul', '$penulis', '$penerbit', '$tahun_terbit', '$deskripsi')");
 
                             if($query) {
                                 echo '<script>alert("Tambah data berhasil.");</script>';
@@ -41,9 +47,15 @@
                         </div>
                     </div>
                     <div class="row mb-3">
+                        <div class="col-md-2">Gambar</div>
+                        <div class="col-md-8"><input type="file" class="form-control" name="gambar"></div>
+                    </div>
+
+                    <div class="row mb-3">
                         <div class="col-md-2">Judul</div>
                         <div class="col-md-8"><input type="text" class="form-control" name="judul"></div>
                     </div>
+
                     <div class="row mb-3">
                         <div class="col-md-2">Penulis</div>
                         <div class="col-md-8"><input type="text" class="form-control" name="penulis"></div>
