@@ -11,12 +11,12 @@ class SQLLogger {
         $adminUsername = $this->db->real_escape_string($adminUsername);
         $activity = $this->db->real_escape_string($activity);
 
-        // Prepare the SQL statement
+        // Menyiapkan statement sql
         $message = "Admin $adminUsername melakukan aktivitas: $activity.";
         $severity = 'info';
         $sql = "INSERT INTO logs (message, severity, created_at) VALUES ('$message', '$severity', NOW())";
 
-        // Execute the SQL statement
+        // Eksekusi dari kode syntax sql
         if ($this->db->query($sql) === TRUE) {
             echo "Log aktivitas admin berhasil ditambahkan.";
         } else {
@@ -26,12 +26,12 @@ class SQLLogger {
 }
 
 // Contoh penggunaan dengan koneksi database yang sudah ada
-$existing_db_connection = new mysqli('localhost', 'root', '', 'ukk_perpus');
-if ($existing_db_connection->connect_error) {
-    die("Koneksi database gagal: " . $existing_db_connection->connect_error);
+$koneksi = new mysqli('localhost', 'root', '', 'ukk_perpus');
+if ($koneksi->connect_error) {
+    die("Koneksi database gagal: " . $koneksi->connect_error);
 }
 
-$logger = new SQLLogger($existing_db_connection);
+$logger = new SQLLogger($koneksi);
 
 // Misalnya, jika admin dengan nama pengguna 'admin123' melakukan aktivitas 'Menambah buku'
 $adminUsername = '';
